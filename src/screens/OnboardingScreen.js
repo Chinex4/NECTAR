@@ -1,7 +1,7 @@
 import { View, Text, ImageBackground, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Image } from 'react-native';
-import { fonts } from '../constants/fonts';
+import { fonts } from '../../constants/fonts';
 import MyButton from '../components/ui/MyButton';
 
 const OnboardingScreen = ({ navigation }) => {

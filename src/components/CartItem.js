@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { View, Text, Image, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { CartContext } from '../../store/context/cart';
+import { fonts } from '../../constants/fonts';
 
 const CartItem = ({ item }) => {
 	const { increaseQuantity, decreaseQuantity, removeFromCart } =
@@ -22,8 +23,8 @@ const CartItem = ({ item }) => {
 				<View className='gap-5'>
 					{/* Item Details */}
 					<View className='flex-1'>
-						<Text className='text-xl font-semibold'>{item.name}</Text>
-						<Text className='text-gray-500 w-[100px]'>{item.description}</Text>
+						<Text style={{ fontFamily: fonts.regular }} className='text-xl font-semibold'>{item.name}</Text>
+						<Text style={{ fontFamily: fonts.regular }} className='text-gray-500 w-[100px]'>{item.description}</Text>
 					</View>
 
 					{/* Quantity Controls */}
@@ -38,7 +39,7 @@ const CartItem = ({ item }) => {
 							/>
 						</Pressable>
 
-						<Text className='mx-2 text-lg'>{item.quantity}</Text>
+						<Text style={{ fontFamily: fonts.regular }} className='mx-2 text-lg'>{item.quantity}</Text>
 
 						<Pressable
 							onPress={() => increaseQuantity(item.id)}
@@ -55,7 +56,7 @@ const CartItem = ({ item }) => {
 
 			{/* Item Price & Remove */}
 			<View className='flex-col-reverse gap-20 items-center'>
-				<Text className='text-2xl -mt-4 font-semibold'>
+				<Text style={{ fontFamily: fonts.regular }} className='text-2xl -mt-4 font-semibold'>
 					${(item.price * item.quantity).toFixed(2)}
 				</Text>
 				<Pressable

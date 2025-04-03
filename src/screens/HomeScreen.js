@@ -1,19 +1,31 @@
 import React, { useContext } from 'react';
-import { View, Text, TextInput, Image, ScrollView } from 'react-native';
+import {
+	View,
+	Text,
+	TextInput,
+	Image,
+	ScrollView,
+	ActivityIndicator,
+} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { fonts } from '../../constants/fonts';
-import Shop from '../../components/hometabs/Shop';
+import Shop from '../components/hometabs/Shop';
 import ExploreScreen from './ExploreScreen';
 import FavouriteScreen from './FavouriteScreen';
 import CartScreen from './CartScreen';
 import AccountScreen from './AccountScreen';
-import { CategoryItemsScreen } from '../../components/hometabs/CatgoryItemsScreen';
+import { CategoryItemsScreen } from '../components/hometabs/CatgoryItemsScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { CartContext } from '../../../store/context/cart';
+import { CartContext } from '../../store/context/cart';
 import OrderScreen from './OrdersScreen';
 import OrderDetailsScreen from './OrderDetails';
 import MyDetailsScreen from './MyDetailsScreen';
+import DeliveryAddressScreen from './DeliveryAddressScreen';
+import AddAddressScreen from './AddAddressScreen';
+import NotificationsScreen from './NotificationsScreen';
+import { AboutScreen, HelpScreen } from './OtherScreens';
+import { useAuth } from '../../store/context/AuthContext';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator(); // Create a Stack Navigator
@@ -56,6 +68,31 @@ const AccountStack = () => (
 			component={MyDetailsScreen}
 			options={{ headerShown: true, title: 'My Details' }}
 		/>
+		<Stack.Screen
+			name='DeliveryAddress'
+			component={DeliveryAddressScreen}
+			options={{ headerShown: true, title: 'Delivery Address' }}
+		/>
+		<Stack.Screen
+			name='AddAddress'
+			component={AddAddressScreen}
+			options={{ headerShown: true, title: 'Add Address' }}
+		/>
+		<Stack.Screen
+			name='Notifications'
+			component={NotificationsScreen}
+			options={{ headerShown: true }}
+		/>
+		<Stack.Screen
+			name='Help'
+			component={HelpScreen}
+			options={{ headerShown: true }}
+		/>
+		<Stack.Screen
+			name='About'
+			component={AboutScreen}
+			options={{ headerShown: true }}
+		/>
 	</Stack.Navigator>
 );
 
@@ -63,12 +100,8 @@ const ShopScreen = () => (
 	<View className='flex-1 bg-white pt-12'>
 		<View className='px-4'>
 			<View className='items-center mb-4'>
-				<Image source={require('../../../assets/images/logo2.png')} />
-				<Text
-					className='text-lg text-black mt-2'
-					style={{ fontFamily: fonts.semibold }}>
-					Olori 19, Abraka
-				</Text>
+				<Image source={require('../../assets/images/logo2.png')} />
+				<Text></Text>
 			</View>
 			<View className='pb-5'>
 				<View className='bg-gray-100 rounded-xl p-3 flex-row items-center'>
@@ -80,21 +113,32 @@ const ShopScreen = () => (
 				</View>
 			</View>
 		</View>
-		<ScrollView
-			className='px-4 bg-white'
-			showsVerticalScrollIndicator={false}>
-			<View className='mt-5'>
-				<Image
-					source={require('../../../assets/images/banner.png')}
-					className='w-full h-28 rounded-xl'
-				/>
-			</View>
-			<Shop />
-		</ScrollView>
+		<View className='pb-[15rem]'>
+			<ScrollView
+				className='px-4'
+				showsVerticalScrollIndicator={false}>
+				<View className='mt-5'>
+					<Image
+						source={require('../../assets/images/banner.png')}
+						className='w-full h-28 rounded-xl'
+					/>
+				</View>
+				<Shop />
+			</ScrollView>
+		</View>
 	</View>
 );
-const HomeScreen = () => {
+const HomeScreen = ({ route }) => {
 	const { cartItemCount } = useContext(CartContext);
+	const { loading } = useAuth();
+	if (loading) {
+		return (
+			<ActivityIndicator
+				size='large'
+				color='#0000ff'
+			/>
+		);
+	}
 	return (
 		<>
 			<Tab.Navigator

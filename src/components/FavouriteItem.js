@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { fonts } from '../constants/fonts';
+import { fonts } from '../../constants/fonts';
 const FavouriteItem = ({ item }) => {
 	const navigation = useNavigation();
 

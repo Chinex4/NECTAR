@@ -1,9 +1,9 @@
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import React, { useContext } from 'react';
 import { fonts } from '../../constants/fonts';
-import { FavouriteContext } from '../../../store/context/favourites';
-import { shop } from '../../data';
-import FavouriteItem from '../../components/FavouriteItem';
+import { FavouriteContext } from '../../store/context/favourites';
+import { shop } from '../data';
+import FavouriteItem from '../components/FavouriteItem';
 
 const FavouriteScreen = () => {
 	const { favList } = useContext(FavouriteContext);

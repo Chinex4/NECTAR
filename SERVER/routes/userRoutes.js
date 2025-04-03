@@ -49,6 +49,12 @@ router.post(
 					.status(400)
 					.json({ success: false, message: 'Email already exists' });
 			}
+			let usernameExists = await User.findOne({ where: { username } });
+			if (usernameExists) {
+				return res
+					.status(400)
+					.json({ success: false, message: 'Username already exists' });
+			}
 
 			// Hash password
 			const salt = await bcrypt.genSalt(10);
@@ -56,7 +62,7 @@ router.post(
 
 			// Generate OTP
 			const otp = generateOTP();
-			const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000); // OTP expires in 10 minutes
+			const otpExpiresAt = new Date(Date.now() + 60 * 60 * 1000); // OTP expires in 10 minutes
 
 			// Create new user with OTP (user will be inactive until verified)
 			const newUser = await User.create({
@@ -165,12 +171,10 @@ router.post(
 
 			// Check if user is verified
 			if (!user.isVerified) {
-				return res
-					.status(403)
-					.json({
-						success: false,
-						message: 'Please verify your email before logging in',
-					});
+				return res.status(403).json({
+					success: false,
+					message: 'Please verify your email before logging in',
+				});
 			}
 
 			// Compare passwords

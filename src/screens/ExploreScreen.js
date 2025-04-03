@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import { fonts } from '../../constants/fonts';
-import { categories } from '../../data';
+import { categories } from '../data';
 
 const ExploreScreen = ({ navigation }) => {
 	const handlePress = (id) => {

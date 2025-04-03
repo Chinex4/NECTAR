@@ -2,9 +2,9 @@ import { View, Text, ImageBackground, Pressable } from 'react-native';
 import React from 'react';
 import { Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { fonts } from '../constants/fonts';
+import { fonts } from '../../constants/fonts';
 import MyButton from '../components/ui/MyButton';
-import UpNavigation from '../components/ui/UpNavigation';
+import UpNavigation from '../components/UpNavigation';
 
 const OnboardingScreen2 = ({ navigation }) => {
 	return (

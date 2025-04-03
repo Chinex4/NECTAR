@@ -1,38 +1,45 @@
 {
-  "expo": {
-    "name": "NECTAR",
-    "slug": "NECTAR",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/logo.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/images/logo.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#53B175"
-    },
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.heischinex.NECTAR"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png",
-      "bundler": "metro"
-    },
-    "plugins": [
-      "expo-font"
-    ],
-    "extra": {
-      "eas": {
-        "projectId": "8a64f7c6-da01-44fb-9f2f-3fdb7300105f"
-      }
-    }
-  }
+	"expo": {
+		"name": "NECTAR",
+		"slug": "NECTAR",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/images/logo.png",
+		"userInterfaceStyle": "light",
+		"newArchEnabled": true,
+		"splash": {
+			"image": "./assets/images/logo.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#53B175"
+		},
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			},
+			"package": "com.heischinex.NECTAR"
+		},
+		"web": {
+			"favicon": "./assets/favicon.png",
+			"bundler": "metro"
+		},
+		"plugins": [
+			"expo-font",
+			[
+				"expo-notifications",
+				{
+					"mode": "production",
+					// "sounds": ["./assets/notification.wav"]
+				}
+			]
+		],
+		"extra": {
+			"eas": {
+				"projectId": "8a64f7c6-da01-44fb-9f2f-3fdb7300105f"
+			}
+		}
+	}
 }

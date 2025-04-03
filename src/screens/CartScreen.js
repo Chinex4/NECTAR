@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native';
-import { CartContext } from '../../../store/context/cart';
-import CartItem from '../../components/CartItem';
+import { CartContext } from '../../store/context/cart';
+import CartItem from '../components/CartItem';
 import { fonts } from '../../constants/fonts';
 
 const CartScreen = () => {
@@ -31,10 +31,10 @@ const CartScreen = () => {
 					{/* Checkout Button */}
 					<View style={styles.buttonContainer}>
 						<Pressable android-ripple={{color: '#ccc'}} className='w-full bg-primary py-4 px-6 rounded-2xl flex-row justify-between items-center'>
-							<Text className='text-white text-2xl font-semibold'>
+							<Text style={{ fontFamily: fonts.regular }} className='text-white text-2xl font-semibold'>
 								Go to Checkout
 							</Text>
-							<Text className='text-white text-2xl font-semibold'>
+							<Text style={{ fontFamily: fonts.regular }} className='text-white text-2xl font-semibold'>
 								${totalPrice.toFixed(2)}
 							</Text>
 						</Pressable>
@@ -42,7 +42,7 @@ const CartScreen = () => {
 				</>
 			) : (
 				<View className='flex-1 justify-center items-center'>
-					<Text className='text-lg text-gray-500'>Your cart is empty</Text>
+					<Text style={{ fontFamily: fonts.regular }} className='text-lg text-gray-500'>Your cart is empty</Text>
 				</View>
 			)}
 		</View>

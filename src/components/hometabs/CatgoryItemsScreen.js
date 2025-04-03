@@ -3,8 +3,8 @@ import { FlatList, View } from 'react-native';
 import { categories, shop } from '../../data';
 import { useLayoutEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import Card from '../ui/Card';
-import { fonts } from '../../constants/fonts';
+import Card from '../Card';
+import { fonts } from '../../../constants/fonts';
 
 export const CategoryItemsScreen = ({ route }) => {
 	const navigation = useNavigation();
@@ -14,9 +14,7 @@ export const CategoryItemsScreen = ({ route }) => {
 			title: categories.find((item) => item.id === categoryId).name,
 		});
 	}, [navigation, categories, categoryId]);
-	const filteredItems = shop.filter(
-		(item) => item.categoryId === categoryId
-	);
+	const filteredItems = shop.filter((item) => item.categoryId === categoryId);
 
 	return (
 		<View className='px-4 flex-1 bg-white'>
@@ -24,20 +22,23 @@ export const CategoryItemsScreen = ({ route }) => {
 				<FlatList
 					className='pb-8'
 					data={filteredItems}
-					showsHorizontalScrollIndicator={false}
+					showsVerticalScrollIndicator={false}
+					columnWrapperStyle={{ justifyContent: 'space-between' }}
 					keyExtractor={(item) => item.id.toString()}
 					renderItem={({ item }) => (
-						<View className='p-4 rounded-xl mb-4 w-[48%]'>
+						<View className='py-6 mb-4 w-[48%]'>
 							<Card item={item} />
 						</View>
 					)}
 					numColumns={2}
 				/>
 			) : (
-				<View
-					className='flex-1'
-				>
-					<Text style={{fontFamily: fonts.regular}} className='text-center text-black mt-8 text-lg'>No items found.</Text>
+				<View className='flex-1'>
+					<Text
+						style={{ fontFamily: fonts.regular }}
+						className='text-center text-black mt-8 text-lg'>
+						No items found.
+					</Text>
 				</View>
 			)}
 		</View>

@@ -11,12 +11,13 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import UpNavigation from '../../components/ui/UpNavigation';
+import UpNavigation from '../components/UpNavigation';
 import { useForm, Controller } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { fonts } from '../../constants/fonts';
-import MyButton from '../../components/ui/MyButton';
+import MyButton from '../components/ui/MyButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const otpSchema = Yup.object().shape({
 	otp: Yup.number()
@@ -44,18 +45,28 @@ const OTPVerification = ({ navigation, route }) => {
 		setSuccess('');
 
 		try {
-			const { user, error } = await supabase.auth.verifyOtp({
+			// Send OTP to the backend for verification
+			const response = await axios.post('http://192.168.41.134:5000/api/auth/verify-otp', {
 				email,
-				token: data.otp,
-				type: 'signup',
+				otp: data.otp,
 			});
+			console.log(response)
 
-			if (error) throw error;
+			if (response.data.success && response.data.token) {
+				// Successfully verified OTP and got the token
+				const { token, user } = response.data;
 
-			setSuccess('Verification successful! Redirecting to login...');
-			setTimeout(() => navigation.navigate('Login'), 2000);
+				// Store the token (for future requests and to keep the user logged in)
+				await AsyncStorage.setItem('userToken', token);
+
+				// Optionally, you can store user data here as well (for easier access)
+				setSuccess('Verification successful! Redirecting to home...');
+
+				// Navigate to the Home screen with user data
+				setTimeout(() => navigation.replace('Home', { user }), 2000);
+			}
 		} catch (error) {
-			setError(error.message);
+			setError(error.response?.data?.message || 'An error occurred');
 		} finally {
 			setLoading(false);
 		}
@@ -67,7 +78,7 @@ const OTPVerification = ({ navigation, route }) => {
 			<View className='flex-1 bg-[#fcfcfc]'>
 				<ImageBackground
 					className='flex-1'
-					source={require('../../../assets/images/blurry.png')}>
+					source={require('../../assets/images/blurry.png')}>
 					<UpNavigation />
 					{/* Code goes here */}
 					<View style={[styles.content, { overflow: 'hidden' }]}>
@@ -148,7 +159,11 @@ const OTPVerification = ({ navigation, route }) => {
 									{loading ? (
 										<ActivityIndicator color='#fff' />
 									) : (
-										<Text style={{fontFamily: fonts.semibold}} className='text-white text-xl text-center'>Verify OTP</Text>
+										<Text
+											style={{ fontFamily: fonts.semibold }}
+											className='text-white text-xl text-center'>
+											Verify OTP
+										</Text>
 									)}
 								</Pressable>
 							</ScrollView>

@@ -39,13 +39,13 @@ const OrderDetailsScreen = ({ route }) => {
 		<ScrollView className='flex-1 bg-white px-4 pt-10 pb-24'>
 			{/* Order Info */}
 			<View className='mt-4 p-4 bg-gray-100 rounded-lg'>
-				<Text className='text-lg font-bold'>Order ID: {order.id}</Text>
-				<Text className='text-gray-500'>Date: {order.date}</Text>
-				<Text className='text-green-600 font-bold'>Status: {order.status}</Text>
+				<Text style={{ fontFamily: fonts.regular }} className='text-lg font-bold'>Order ID: {order.id}</Text>
+				<Text style={{ fontFamily: fonts.regular }} className='text-gray-500'>Date: {order.date}</Text>
+				<Text style={{ fontFamily: fonts.regular }} className='text-green-600 font-bold'>Status: {order.status}</Text>
 			</View>
 
 			{/* Items */}
-			<Text className='mt-6 text-xl font-bold'>Items</Text>
+			<Text style={{ fontFamily: fonts.regular }} className='mt-6 text-xl font-bold'>Items</Text>
 			{order.items.map((item) => (
 				<View
 					key={item.id}
@@ -55,16 +55,16 @@ const OrderDetailsScreen = ({ route }) => {
 						className='w-16 h-16 rounded-lg'
 					/>
 					<View className='ml-4 flex-1'>
-						<Text className='text-lg font-semibold'>{item.name}</Text>
-						<Text className='text-gray-600'>{item.price}</Text>
+						<Text style={{ fontFamily: fonts.regular }} className='text-lg font-semibold'>{item.name}</Text>
+						<Text style={{ fontFamily: fonts.regular }} className='text-gray-600'>{item.price}</Text>
 					</View>
 				</View>
 			))}
 
 			{/* Total Price */}
 			<View className='mt-6 p-4 bg-gray-100 rounded-lg'>
-				<Text className='text-lg font-bold'>Total Amount</Text>
-				<Text className='text-xl text-green-600 font-bold'>{order.total}</Text>
+				<Text style={{ fontFamily: fonts.regular }} className='text-lg font-bold'>Total Amount</Text>
+				<Text style={{ fontFamily: fonts.regular }} className='text-xl text-green-600 font-bold'>{order.total}</Text>
 			</View>
 		</ScrollView>
 	);

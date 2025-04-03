@@ -2,7 +2,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import React, { useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { fonts } from '../../constants/fonts';
-import { CartContext } from '../../../store/context/cart';
+import { CartContext } from '../../store/context/cart';
 import { Ionicons } from "@expo/vector-icons";
 
 const Card = ({ item }) => {

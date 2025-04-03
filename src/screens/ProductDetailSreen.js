@@ -8,17 +8,19 @@ import {
 	TextInput,
 } from 'react-native';
 import { fonts } from '../../constants/fonts';
-import UpNavigation from '../../components/ui/UpNavigation';
+import UpNavigation from '../components/UpNavigation';
 import { Ionicons } from '@expo/vector-icons';
-import { FavouriteContext } from '../../../store/context/favourites';
-import { shop } from '../../data';
-import { CartContext } from '../../../store/context/cart';
+import { FavouriteContext } from '../../store/context/favourites';
+import { shop } from '../data';
+import { CartContext } from '../../store/context/cart';
 
 const ProductDetailScreen = ({ route }) => {
 	const itemId = route.params.itemId;
 	const item = shop.find((item) => item.id === itemId);
-	const { addFavourite, favList, removeFavourite } = useContext(FavouriteContext);
-	const { addToCart, increaseQuantity, decreaseQuantity, cart } = useContext(CartContext);
+	const { addFavourite, favList, removeFavourite } =
+		useContext(FavouriteContext);
+	const { addToCart, increaseQuantity, decreaseQuantity, cart } =
+		useContext(CartContext);
 
 	const cartItem = cart.find((cartItem) => cartItem.id === itemId);
 	const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 1);
@@ -34,10 +36,10 @@ const ProductDetailScreen = ({ route }) => {
 			addToCart({ ...item, quantity: 1 });
 		}
 	};
-	
+
 	const handleQuantityChange = (type) => {
 		if (!cartItem) return;
-	
+
 		let newQuantity = quantity;
 		if (type === 'lower' && quantity > 1) {
 			newQuantity -= 1;
@@ -48,7 +50,6 @@ const ProductDetailScreen = ({ route }) => {
 		}
 		setQuantity(newQuantity);
 	};
-	
 
 	const changeFavouriteHandler = () => {
 		isFavourite ? removeFavourite(itemId) : addFavourite(itemId);
@@ -77,10 +78,14 @@ const ProductDetailScreen = ({ route }) => {
 					<View className='mt-12'>
 						<View className='flex-row justify-between items-center'>
 							<View>
-								<Text className='text-3xl text-black' style={{ fontFamily: fonts.bold }}>
+								<Text
+									className='text-3xl text-black'
+									style={{ fontFamily: fonts.bold }}>
 									{item.name}
 								</Text>
-								<Text className='text-gray-500 text-lg' style={{ fontFamily: fonts.regular }}>
+								<Text
+									className='text-gray-500 text-lg'
+									style={{ fontFamily: fonts.regular }}>
 									{item.description}
 								</Text>
 							</View>
@@ -94,8 +99,14 @@ const ProductDetailScreen = ({ route }) => {
 						</View>
 						<View className='flex-row items-center justify-between mt-5'>
 							<View className='flex-row gap-5'>
-								<Pressable disabled={quantity <= 1} onPress={() => handleQuantityChange('lower')}>
-									<Text className={`text-[35px] mt-1 ${quantity <= 1 ? 'text-gray-200' : 'text-primary'}`} style={{ fontFamily: fonts.bold }}>
+								<Pressable
+									disabled={quantity <= 1}
+									onPress={() => handleQuantityChange('lower')}>
+									<Text
+										className={`text-[35px] mt-1 ${
+											quantity <= 1 ? 'text-gray-200' : 'text-primary'
+										}`}
+										style={{ fontFamily: fonts.bold }}>
 										-
 									</Text>
 								</Pressable>
@@ -109,12 +120,16 @@ const ProductDetailScreen = ({ route }) => {
 								/>
 
 								<Pressable onPress={() => handleQuantityChange('higher')}>
-									<Text className='text-[35px] text-primary mt-1' style={{ fontFamily: fonts.bold }}>
+									<Text
+										className='text-[35px] text-primary mt-1'
+										style={{ fontFamily: fonts.bold }}>
 										+
 									</Text>
 								</Pressable>
 							</View>
-							<Text className='text-3xl text-black mt-1' style={{ fontFamily: fonts.bold }}>
+							<Text
+								className='text-3xl text-black mt-1'
+								style={{ fontFamily: fonts.bold }}>
 								${item.price}
 							</Text>
 						</View>
@@ -139,12 +154,20 @@ const ProductDetailScreen = ({ route }) => {
 							style={{ fontFamily: fonts.semibold }}>
 							Review
 						</Text>
-						<Text className='text-yellow-500 text-lg mt-1'>★★★★★</Text>
+						<Text
+							style={{ fontFamily: fonts.regular }}
+							className='text-yellow-500 text-lg mt-1'>
+							★★★★★
+						</Text>
 					</View>
 
 					{/* Add to Basket */}
-					<Pressable onPress={handleAddToCart} className='bg-primary py-4 rounded-xl mt-16'>
-						<Text className='text-center text-white text-lg' style={{ fontFamily: fonts.bold }}>
+					<Pressable
+						onPress={handleAddToCart}
+						className='bg-primary py-4 rounded-xl mt-16'>
+						<Text
+							className='text-center text-white text-lg'
+							style={{ fontFamily: fonts.bold }}>
 							Add to Cart
 						</Text>
 					</Pressable>

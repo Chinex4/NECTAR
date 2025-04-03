@@ -5,9 +5,9 @@ import {
 	StyleSheet,
 	Pressable,
 } from 'react-native';
-import { fonts } from '../constants/fonts';
+import { fonts } from '../../constants/fonts';
 import { useNavigation } from '@react-navigation/native';
-import Card from './ui/Card';
+import Card from './Card';
 import { shop } from '../data';
 
 

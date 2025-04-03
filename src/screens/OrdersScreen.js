@@ -10,7 +10,7 @@ export const dummyOrders = [
 			{
 				id: '101',
 				name: 'Wireless Headphones',
-				image: require('../../../assets/images/chicken.png'),
+				image: require('../../assets/images/chicken.png'),
 				price: 59.99,
 			},
 		],
@@ -24,13 +24,13 @@ export const dummyOrders = [
 			{
 				id: '102',
 				name: 'Smart Watch',
-				image: require('../../../assets/images/chicken.png'),
+				image: require('../../assets/images/chicken.png'),
 				price: 79.99,
 			},
 			{
 				id: '103',
 				name: 'Bluetooth Speaker',
-				image: require('../../../assets/images/chicken.png'),
+				image: require('../../assets/images/chicken.png'),
 				price: 49.99,
 			},
 		],
@@ -44,7 +44,7 @@ export const dummyOrders = [
 			{
 				id: '104',
 				name: 'Gaming Mouse',
-				image: require('../../../assets/images/chicken.png'),
+				image: require('../../assets/images/chicken.png'),
 				price: 39.99,
 			},
 		],

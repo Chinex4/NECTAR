@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import UpNavigation from '../../components/ui/UpNavigation';
+import UpNavigation from '../components/UpNavigation';
 import { fonts } from '../../constants/fonts';
-import MyButton from '../../components/ui/MyButton';
+import MyButton from '../components/ui/MyButton';
 import { Picker } from '@react-native-picker/picker';
 
 const SelectLocationScreen = ({ navigation }) => {
@@ -28,7 +28,7 @@ const SelectLocationScreen = ({ navigation }) => {
 			<View className='flex-1 bg-[#fcfcfc]'>
 				<ImageBackground
 					className='flex-1'
-					source={require('../../../assets/images/blurry.png')}>
+					source={require('../../assets/images/blurry.png')}>
 					<UpNavigation />
 					{/* Code goes here */}
 					<View style={[styles.content, { overflow: 'hidden' }]}>
@@ -39,7 +39,7 @@ const SelectLocationScreen = ({ navigation }) => {
 							<View className='items-center'>
 							    <Image
     								className='mt-4'
-    								source={require('../../../assets/images/map.png')}
+    								source={require('../../assets/images/map.png')}
     							/>
 							</View>
 							{/* Title & Subtitle */}
